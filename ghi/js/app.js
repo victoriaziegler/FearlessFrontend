@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         } else {
             const data = await response.json();
+            let index = 0
             for (let conference of data.conferences) {
                 const detailUrl = `http://localhost:8000${conference.href}`;
                 const detailResponse = await fetch(detailUrl);
@@ -61,8 +62,9 @@ window.addEventListener('DOMContentLoaded', async () => {
                     const location = details.conference.location.name;
 
                     const html = createCard(name, description, pictureUrl, start_date, end_date, location);
-                    const column = document.querySelector('.row');
+                    const column = document.querySelector('#col-'+ (index%3));
                     column.innerHTML += html;
+                    index += 1
 
                 }
             }
