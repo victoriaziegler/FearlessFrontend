@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             event.preventDefault();
             const formData = new FormData(formTag);
             const json = JSON.stringify(Object.fromEntries(formData));
-            const attendeeUrl = 'http://localhost:8000/api/attendees/';
+            const attendeeUrl = 'http://localhost:8001/api/attendees/';
             const fetchConfig = {
                 method: "post",
                 body: json,
@@ -33,11 +33,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch(attendeeUrl, fetchConfig);
             if (response.ok) {
                 formTag.reset();
-                const newLocation = await response.json();
                 const successTag = document.getElementById('success-message')
+                formTag.classList.add('d-none')
                 successTag.classList.remove('d-none')
+                const newAttendee = await response.json();
             }
         });
-
     }
 });

@@ -2,7 +2,7 @@ function createCard(name, description, pictureUrl, start_date, end_date, locatio
     return `
         <div class="col mb-4">
             <div class="shadow p-0 mb-5 bg-body rounded">
-                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
                     <img src="${pictureUrl}" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">${name}</h5>
