@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch(conferenceUrl, fetchConfig);
             if (response.ok) {
                 formTag.reset();
-                const newLocation = await response.json();
+                const newConference = await response.json();
             }
         });
     }
