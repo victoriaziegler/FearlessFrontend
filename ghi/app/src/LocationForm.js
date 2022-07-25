@@ -4,7 +4,26 @@ class LocationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {states: []};
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleRoomCountChange = this.handleRoomCountChange.bind(this);
+        this.handleCityChange = this.handleCityChange.bind(this);
     }
+
+    handleNameChange(event) {
+        const value = event.target.value;
+        this.setState({name: value})
+    }
+
+    handleRoomCountChange(event) {
+        const value = event.target.value;
+        this.setState({roomCount: value})
+    }
+
+    handleCityChange(event) {
+        const value = event.target.value;
+        this.setState({city: value})
+    }
+
     async componentDidMount() {
         const url = 'http://localhost:8000/api/states/';
 
@@ -23,17 +42,17 @@ class LocationForm extends React.Component {
                         <h1>Create a new location</h1>
                         <form id="create-location-form">
                             <div className="form-floating mb-3">
-                                <input placeholder="Name" required type="text" name="name" id="name"
+                                <input onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name"
                                     className="form-control"/>
                                 <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input placeholder="Room count" required type="number" name="room_count" id="room_count"
+                                <input onChange={this.handleRoomCountChange} placeholder="Room count" required type="number" name="room_count" id="room_count"
                                     className="form-control"/>
                                 <label htmlFor="room_count">Room count</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input placeholder="City" required type="text" name="city" id="city"
+                                <input onChange={this.handleCityChange} placeholder="City" required type="text" name="city" id="city"
                                     className="form-control"/>
                                 <label htmlFor="city">City</label>
                             </div>
