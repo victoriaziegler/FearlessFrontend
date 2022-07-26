@@ -6,8 +6,10 @@ class AttendConferenceForm extends React.Component{
         this.state = {
             name: '',
             email: '',
-            conferences: []
+            conferences: [],
+            hasSignedUp: false,
         };
+
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleConferenceChange = this.handleConferenceChange.bind(this);
@@ -32,8 +34,8 @@ class AttendConferenceForm extends React.Component{
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        // data.conference = data.conferences;
         delete data.conferences;
+        delete data.hasSignedUp;
         console.log(data);
 
         const attendeeUrl = `http://localhost:8001/api/attendees/`;
@@ -47,14 +49,13 @@ class AttendConferenceForm extends React.Component{
         const response = await fetch(attendeeUrl, fetchConfig);
         if (response.ok) {
             const newAttendee = await response.json();
-            console.log(newAttendee);
 
-            const cleared = {
+            this.setState({
                 name: '',
                 email: '',
                 conference: '',
-            };
-            this.setState(cleared);
+                hasSignedUp: true,
+            });
         }
     }
 
@@ -75,6 +76,12 @@ class AttendConferenceForm extends React.Component{
         if (this.state.conferences.length > 0) {
         spinnerClasses = 'd-flex justify-content-center mb-3 d-none'
         dropdownClasses = "form-select"
+        }
+        let messageClasses = 'alert alert-success d-none mb-0';
+        let formClasses = '';
+        if (this.state.hasSignedUp) {
+            messageClasses = 'alert alert-success mb-0';
+            formClasses = 'd-none';
         }
 
         return (

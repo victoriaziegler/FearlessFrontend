@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 function Nav() {
     return (
@@ -15,16 +16,16 @@ function Nav() {
                             <a className="nav-link" aria-current="page" href="/">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link d-none" aria-current="page" href="new-location.html">New location</a>
+                            <NavLink className="nav-link d-none" aria-current="page" to="/locations/new">New location</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link d-none" aria-current="page" href="new-conference.html">New conference</a>
+                            <NavLink className="nav-link d-none" aria-current="page" to="/conferences/new">New conference</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" aria-current="page" href="new-presentation.html">New presentation</a>
+                            <NavLink className="nav-link" aria-current="page" to="/presentations/new">New presentation</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" aria-current="page" href="new-conference.html">New Conference</a>
+                            <NavLink className="nav-link" aria-current="page" to="/attendees/new">New Attendee</NavLink>
                         </li>   
                     </ul>
                 </div>
